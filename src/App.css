@@ -40,3 +40,18 @@
 .read-the-docs {
   color: #888;
 }
+
+.Articles_list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.Article_card {
+  border: white solid 1px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.Article_card p {
+  margin: 5px 0;
+}
