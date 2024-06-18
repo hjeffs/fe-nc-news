@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getCommentsPerArticle } from "../../utils/api";
 import Collapsible from "./Collapsible";
+import PostComment from "./PostComment";
 
 function Comments() {
     const [isLoading, setIsLoading] = useState(true);
@@ -27,6 +28,7 @@ function Comments() {
 
     return (
         <Collapsible title="Toggle Comments">
+            <PostComment></PostComment>
             <p>Total Comments: {comments.length}</p>
             <ul className="Comments_list">
                 {comments.map((comment) => (

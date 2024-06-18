@@ -7,7 +7,12 @@ function Home() {
                 <ul>
                     <li>
                         <Link className='link' to='/articles'>
-                        All articles
+                        All Articles
+                        </Link>
+                    </li>
+                    <li>
+                        <Link className='link' to='/users'>
+                        All Users
                         </Link>
                     </li>
                 </ul>

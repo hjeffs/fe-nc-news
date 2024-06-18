@@ -55,3 +55,23 @@
 .Article_card p {
   margin: 5px 0;
 }
+
+.Comments_list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.Users_list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.User_card {
+  border: white solid 1px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.text_success {
+  color: lime;
+}
