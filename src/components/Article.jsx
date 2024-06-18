@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getArticleById } from "../../utils/api";
 import { Link, useParams } from "react-router-dom";
+import Comments from "./Comments"
 
 function Article() {
     const [isLoading, setIsLoading] = useState(true);
@@ -33,6 +34,8 @@ function Article() {
             <p>Topic: {article.topic}</p>
             <input placeholder="Write a comment"/>
             <p>Comment Count: {article.comment_count}</p>
+            <Comments title="See all comments"></Comments>
+            <hr />
             <Link className='link' to={`/articles`}>
                 Back to articles
             </Link>
