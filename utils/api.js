@@ -24,3 +24,11 @@ export const getArticleById = (item_id) => {
             return response.data.article[0]
         });
 };
+
+export const getCommentsPerArticle = (item_id) => {
+    return newsApi
+        .get(`/articles/${item_id}/comments`)
+        .then((response) => {
+            return response.data.article
+        })
+}
