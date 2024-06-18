@@ -27,6 +27,7 @@ function Comments() {
 
     return (
         <Collapsible title="Toggle Comments">
+            <p>Total Comments: {comments.length}</p>
             <ul className="Comments_list">
                 {comments.map((comment) => (
                     <li className="Comment_card" key={comment.comment_id}>

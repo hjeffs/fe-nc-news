@@ -8,9 +8,6 @@ export const getArticles = (item_id) => {
     return newsApi
     .get('/articles', { params: { article_id: item_id } })
     .then((response) => {
-        // console.log('getArticles')
-        // console.log(response.data, '<< .data')
-        // console.log(response.data.articles, '<<<.articles')
         return response.data.articles
     })
 }
@@ -20,7 +17,6 @@ export const getArticleById = (item_id) => {
     return newsApi
         .get(`/articles/${item_id}`)
         .then((response) => {
-            // console.log(response.data.article[0])
             return response.data.article[0]
         });
 };
@@ -32,3 +28,11 @@ export const getCommentsPerArticle = (item_id) => {
             return response.data.article
         })
 }
+
+export const voteOnArticle = (item_id, voteChange) => {
+    return newsApi
+        .patch(`/articles/${item_id}`, { inc_votes: voteChange })
+        .then((response) => {
+            return response.data.article;
+        });
+};
