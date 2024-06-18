@@ -13,7 +13,6 @@ export const getArticles = (item_id) => {
 }
 
 export const getArticleById = (item_id) => {
-    // console.log(item_id);
     return newsApi
         .get(`/articles/${item_id}`)
         .then((response) => {
@@ -36,3 +35,19 @@ export const voteOnArticle = (item_id, voteChange) => {
             return response.data.article;
         });
 };
+
+export const getUsers = () => {
+    return newsApi
+        .get('/users')
+        .then((response) => {
+            return response.data.users
+        })
+}
+
+export const postComment = (item_id, comment) => {
+    return newsApi
+        .post(`/articles/${item_id}/comments`, comment)
+        .then((response) => {
+            return response.data.comment
+        })
+}
