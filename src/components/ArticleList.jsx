@@ -1,21 +1,36 @@
 import { useState, useEffect } from "react";
 import { getArticles } from "../../utils/api";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 
 function ArticleList() {
     const [isLoading, setIsLoading] = useState(true);
     const [articles, setArticles] = useState([]);
     const { search } = useLocation()
-    const topicQuery = search.split("=").pop()
+    const query = search.split("=")
+    // console.log(query)
+    let topicQuery = '';
+    let sortQuery = ''
+
+    switch (query[0]) {
+        case '?topic': topicQuery = query[1];
+        break;
+        case '?sort_by': sortQuery = query[1];
+        break;
+    }
+    
+    // const topicQuery = search.split("=").pop()
+    // const sortQuery = search.split("=").pop()
+
+    const [searchParams, setSearchParams] = useSearchParams()
 
     useEffect(() => {
         setIsLoading(true);
-        getArticles(topicQuery)
+        getArticles(topicQuery, sortQuery)
             .then((articles) => {
                 setArticles(articles);
                 setIsLoading(false);
             });
-    }, [topicQuery]);
+    }, [topicQuery, sortQuery]);
 
     if (isLoading) {
         return <p className="Loading">Loading...</p>;

@@ -4,9 +4,14 @@ const newsApi = axios.create({
     baseURL: 'https://hjeffs-nc-news.onrender.com/api',
 })
 
-export const getArticles = (topicQuery) => {
+export const getArticles = (topicQuery, sortQuery) => {
+    // console.log(topicQuery)
+    // console.log(sortQuery)
     return newsApi
-    .get('/articles', { params: { topic: topicQuery ? topicQuery : null } })
+    .get('/articles', { params: { topic: topicQuery ? topicQuery : null,
+                                  sort_by: sortQuery ? sortQuery : null,  
+     } 
+    })
     .then((response) => {
         return response.data.articles
     })
