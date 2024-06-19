@@ -10,7 +10,7 @@ function Comments() {
     const [comments, setComments] = useState(null);
     const { item_id } = useParams();
     const { user } = useContext(UserContext)
-    console.log(user)
+    const [showDeleteMsg, setShowDeleteMsg] = useState(false)
 
     useEffect(() => {
         setIsLoading(true);
@@ -31,6 +31,7 @@ function Comments() {
 
     function deleteArticleComment(comment_id) {
         deleteComment(comment_id)
+        setShowDeleteMsg(true)
     }
 
     return (
@@ -44,8 +45,8 @@ function Comments() {
                         <p>{comment.body}</p>
                         <p>Votes: {comment.votes} | ID: {comment.comment_id}</p>
                         <p>{new Date(comment.created_at).toString()}</p>
-                        {comment.author === user.username ? <button onClick={() => deleteArticleComment(comment.comment_id)}>DELETE</button> : null}
-                        {/* <button onClick={() => deleteArticleComment(comment.comment_id)}>DELETE</button> */}
+                        {user && comment.author === user.username ? <button onClick={() => deleteArticleComment(comment.comment_id)}>DELETE</button> : null}
+                        {showDeleteMsg ? <p className="text_success">Your comment has been deleted</p> : null}
                     </li>
                 ))}
             </ul>

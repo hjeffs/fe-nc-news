@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { useParams } from "react-router-dom"
 import { postComment } from "../../utils/api"
+import { UserContext } from "../contexts/UserContext"
 
 function PostComment() {
     const [comment, setComment] = useState({
@@ -9,6 +10,7 @@ function PostComment() {
     })
     const { item_id } = useParams();
     const [showSuccessMsg, setShowSuccessMsg] = useState(false)
+    const { user } = useContext(UserContext)
 
     function handleChange(event) {
         setShowSuccessMsg(false)
@@ -34,7 +36,7 @@ function PostComment() {
                 id="username"
                 value={comment.username}
                 onChange={handleChange}
-                placeholder="Username"
+                placeholder="Your Username"
                 required
             />
             <input
