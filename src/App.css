@@ -79,3 +79,18 @@
 .user_text {
   color: yellow;
 }
+
+.Topics_list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.Topics_card {
+  border: white solid 1px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.link {
+  margin-top: 5px;
+}

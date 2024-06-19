@@ -4,9 +4,9 @@ const newsApi = axios.create({
     baseURL: 'https://hjeffs-nc-news.onrender.com/api',
 })
 
-export const getArticles = (item_id) => {
+export const getArticles = (topicQuery) => {
     return newsApi
-    .get('/articles', { params: { article_id: item_id } })
+    .get('/articles', { params: { topic: topicQuery ? topicQuery : null } })
     .then((response) => {
         return response.data.articles
     })
@@ -57,5 +57,21 @@ export const deleteComment = (comment_id) => {
         .delete(`/comments/${comment_id}`)
         .then((response) => {
             return response
+        })
+}
+
+export const getTopics = () => {
+    return newsApi
+        .get('/topics')
+        .then((response) => {
+            return response.data.topics
+        })
+}
+
+export const getArticlesByTopic = (topicQuery) => {
+    return newsApi
+        .get(`/articles`, { params: { topic: topicQuery } })
+        .then((response) => {
+            return response.data.articles
         })
 }

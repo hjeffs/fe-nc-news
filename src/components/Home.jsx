@@ -15,6 +15,11 @@ function Home() {
                         All Users
                         </Link>
                     </li>
+                    <li>
+                        <Link className='link' to='/topics'>
+                        All Topics
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </div>
