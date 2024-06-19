@@ -1,12 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { getTopics } from "../../utils/api";
 import { Link } from "react-router-dom";
-import { UserContext } from "../contexts/UserContext";
 
 function TopicList() {
     const [isLoading, setIsLoading] = useState(true);
     const [topics, setTopics] = useState([]);
-    const { setUser } = useContext(UserContext)
 
     useEffect(() => {
         setIsLoading(true);

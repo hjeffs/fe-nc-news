@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
 import { getArticles } from "../../utils/api";
-import { Link } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 
 function ArticleList() {
     const [isLoading, setIsLoading] = useState(true);
     const [articles, setArticles] = useState([]);
+    const { search } = useLocation()
+    const topicQuery = search.split("=").pop()
 
     useEffect(() => {
         setIsLoading(true);
-        getArticles()
+        getArticles(topicQuery)
             .then((articles) => {
                 setArticles(articles);
                 setIsLoading(false);
             });
-    }, []);
+    }, [topicQuery]);
 
     if (isLoading) {
         return <p className="Loading">Loading...</p>;
