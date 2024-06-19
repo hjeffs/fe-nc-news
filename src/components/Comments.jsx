@@ -1,13 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { getCommentsPerArticle } from "../../utils/api";
+import { getCommentsPerArticle, deleteComment } from "../../utils/api";
 import Collapsible from "./Collapsible";
 import PostComment from "./PostComment";
+import { UserContext } from "../contexts/UserContext";
 
 function Comments() {
     const [isLoading, setIsLoading] = useState(true);
     const [comments, setComments] = useState(null);
     const { item_id } = useParams();
+    const { user } = useContext(UserContext)
+    const [showDeleteMsg, setShowDeleteMsg] = useState(false)
 
     useEffect(() => {
         setIsLoading(true);
@@ -26,6 +29,11 @@ function Comments() {
         return <p>No comments, be the first!</p>;
     }
 
+    function deleteArticleComment(comment_id) {
+        deleteComment(comment_id)
+        setShowDeleteMsg(true)
+    }
+
     return (
         <Collapsible title="Toggle Comments">
             <PostComment></PostComment>
@@ -37,6 +45,8 @@ function Comments() {
                         <p>{comment.body}</p>
                         <p>Votes: {comment.votes} | ID: {comment.comment_id}</p>
                         <p>{new Date(comment.created_at).toString()}</p>
+                        {user && comment.author === user.username ? <button onClick={() => deleteArticleComment(comment.comment_id)}>DELETE</button> : null}
+                        {showDeleteMsg ? <p className="text_success">Your comment has been deleted</p> : null}
                     </li>
                 ))}
             </ul>
