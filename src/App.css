@@ -94,3 +94,7 @@
 .link {
   margin-top: 5px;
 }
+
+.Error_text {
+  color: red;
+}
