@@ -68,10 +68,16 @@ export const getTopics = () => {
         })
 }
 
-export const getArticlesByTopic = (topicQuery) => {
+export const sortArticles = (sortQuery) => {
     return newsApi
-        .get(`/articles`, { params: { topic: topicQuery } })
+        .get('/articles', { params: { sort_by: sortQuery ? sortQuery : null } })
         .then((response) => {
-            return response.data.articles
-        })
+            const articles = response.data.articles
+            const sortedArticles = articles.sort((a, b) => {
+                if(a[sortQuery] < b[sortQuery]) {return 1};
+                if(a[sortQuery] > b[sortQuery]) {return -1};
+                return 0;
+            })
+            return sortedArticles
+    })
 }
