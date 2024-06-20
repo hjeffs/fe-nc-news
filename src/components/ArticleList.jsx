@@ -88,6 +88,11 @@ function ArticleList() {
     if (isLoading) {
         return <p className="Loading">Loading...</p>;
     }
+    
+    const topicList = ["coding", "football", "cooking"]
+    if (!topicList.includes(topicQuery)) {
+        return <p>Topic not found.</p>;
+    }
 
     return (
         <div>

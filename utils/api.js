@@ -10,6 +10,9 @@ export const getArticles = (topicQuery) => {
     .then((response) => {
         return response.data.articles
     })
+    .catch((err) => {
+        console.log(err.message)
+    })
 }
 
 export const getArticleById = (item_id) => {
@@ -17,6 +20,9 @@ export const getArticleById = (item_id) => {
         .get(`/articles/${item_id}`)
         .then((response) => {
             return response.data.article[0]
+        })
+        .catch((err) => {
+            console.log(err.message)
         });
 };
 
