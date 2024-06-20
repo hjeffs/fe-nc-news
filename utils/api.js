@@ -4,14 +4,9 @@ const newsApi = axios.create({
     baseURL: 'https://hjeffs-nc-news.onrender.com/api',
 })
 
-export const getArticles = (topicQuery, sortQuery) => {
-    // console.log(topicQuery)
-    // console.log(sortQuery)
+export const getArticles = (topicQuery) => {
     return newsApi
-    .get('/articles', { params: { topic: topicQuery ? topicQuery : null,
-                                  sort_by: sortQuery ? sortQuery : null,  
-     } 
-    })
+    .get('/articles', { params: { topic: topicQuery ? topicQuery : null } })
     .then((response) => {
         return response.data.articles
     })
@@ -73,10 +68,16 @@ export const getTopics = () => {
         })
 }
 
-export const getArticlesByTopic = (topicQuery) => {
+export const sortArticles = (sortQuery) => {
     return newsApi
-        .get(`/articles`, { params: { topic: topicQuery } })
+        .get('/articles', { params: { sort_by: sortQuery ? sortQuery : null } })
         .then((response) => {
-            return response.data.articles
-        })
+            const articles = response.data.articles
+            const sortedArticles = articles.sort((a, b) => {
+                if(a[sortQuery] < b[sortQuery]) {return 1};
+                if(a[sortQuery] > b[sortQuery]) {return -1};
+                return 0;
+            })
+            return sortedArticles
+    })
 }
